@@ -1,14 +1,24 @@
-import React from 'react'
-import {Field} from 'formik';
-const DropdownField = (props, events, data) => {
-    console.log("props in form",props)
+import React, { useEffect } from 'react'
+import { Field } from 'formik';
+import axios from 'axios';
+
+const DropdownField = (props) => {
+    let [data,setData] = [];
+
+    axios.get(props.data_url).then((res) => {
+        console.log('Dropdown data: ', res.data.options);
+        setData(res.data.options);
+    }).catch(err => {
+        console.error('Error fetching dropdown data: ', err);
+    });
+
     return (
         <Field as="select">
-        {
-            data.options.map(option => {
-            return (<option value={option}>{option}</option>)
-            })
-        }
+            {
+                data && data.map(option => {
+                    return (<option key={option} value={option}>{option}</option>)
+                })
+            }
         </Field>
     )
 }

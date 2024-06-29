@@ -80,20 +80,12 @@ app.get("/",(req,res) => {
                     id:"lastName",
                     placeholder: "Enter last name"
                 },
-                // {
-                //     type:"dropdown",
-                //     name: "Color",
-                //     id:"color",
-                //     events: [
-                //         {
-                //             event_type:"onClick",
-                //             event_action:"data-fetching",
-                //             event_data: {
-                //                 url:"http://localhost:3100/colors"
-                //             }
-                //         }
-                //     ],
-                // },
+                {
+                    type:"dropdown",
+                    name: "Color",
+                    id:"color",
+                    data_url: "http://localhost:3100/colors"
+                },
                 {
                     type:"submit",
                     id:"submit",
@@ -108,7 +100,7 @@ app.get("/",(req,res) => {
 
 app.get('/colors', (req, res) => {
     res.json({
-        companies: [
+        options: [
             "red",
             "green",
             "blue",

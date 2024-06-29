@@ -11,6 +11,7 @@ function App() {
 
   const [ui, setUi] = useState(null);
   const [initialValues, setInitialValues] = useState({});
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const url = "http://localhost:3100"
@@ -48,7 +49,7 @@ function App() {
       <Form>
         {
           ui?.sublayout.components.map(component => {
-            return mapper(component.type)(component);
+            return mapper(component.type)(component, data);
           })
         }
       </Form>
