@@ -1,5 +1,5 @@
 import React from 'react'
-import Field from 'formik';
+import {Field} from 'formik';
 const DropdownField = (props, events, data) => {
     console.log("props in form",props)
     return (

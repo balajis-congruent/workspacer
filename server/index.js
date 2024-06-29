@@ -230,6 +230,6 @@ function getPlansByCompanyName(companyName) {
 
 
 app.listen(3100, () => {
-    console.log("running on port ", 3000);
+    console.log("running on port ", 3100);
 })
 
