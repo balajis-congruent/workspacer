@@ -1,5 +1,5 @@
 import ButtonField from "../components/ButtonField";
-import DropdownField from "../components/DropdownField";
+import {DropdownField} from "../components/DropdownField";
 import InputField from "../components/InputField";
 
 const mapperComponents = [

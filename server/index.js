@@ -72,19 +72,23 @@ app.get("/",(req,res) => {
                     type:"input",
                     name: "FirstName",
                     id:"firstName",
-                    placeholder: "Enter first name"
+                    placeholder: "Enter first name",
+                    validations : {type: "string", required: true, message: "First name is required"}
                 },
                 {
                     type:"input",
                     name: "LastName",
                     id:"lastName",
-                    placeholder: "Enter last name"
+                    placeholder: "Enter last name",
+                    validations : {type: "string", required: true, message: "Last name is required"}
+
                 },
                 {
                     type:"dropdown",
                     name: "Color",
                     id:"color",
-                    data_url: "http://localhost:3100/colors"
+                    data_url: "http://localhost:3100/colors",
+                    validations : {type: "string", required: true, message: "Color is required"}
                 },
                 {
                     type:"submit",

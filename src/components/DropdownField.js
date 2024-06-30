@@ -1,26 +1,35 @@
-import React, { useEffect } from 'react'
-import { Field } from 'formik';
+import React from 'react'
+import { Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 
-const DropdownField = (props) => {
-    let [data,setData] = [];
 
-    axios.get(props.data_url).then((res) => {
-        console.log('Dropdown data: ', res.data.options);
-        setData(res.data.options);
-    }).catch(err => {
-        console.error('Error fetching dropdown data: ', err);
-    });
+const fetchDropdownData = async (dataUrl) => {
+    try {
+        const response = await axios.get(dataUrl);
+        const optionsArray = Object.values(response.data.options);
+        console.log('Dropdown data:', optionsArray);
+        return optionsArray;
+    } catch (error) {
+        console.error('Error fetching dropdown data:', error);
+        return [];
+    }
+};
 
+const DropdownField = (props, data) => {
+    console.log("Data in drop", data);
     return (
-        <Field as="select">
-            {
-                data && data.map(option => {
-                    return (<option key={option} value={option}>{option}</option>)
-                })
-            }
-        </Field>
+        <div style={{ display: "list-item", paddingLeft: "50%", }} >
+            <Field {...props} component="select">
+                <option value="" disabled>Select {props.name}</option>
+                {
+                    data && data.map(option => {
+                        return (<option key={option} value={option}>{option}</option>)
+                    })
+                }
+            </Field>
+            <ErrorMessage name={props.name} component="div" className="error" style={{ color: 'red' }} />
+        </div>
     )
 }
 
-export default DropdownField
+export { fetchDropdownData, DropdownField }

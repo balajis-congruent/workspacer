@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ButtonField = (props) => {
+const ButtonField = (props, data=null) => {
 return (
     <>
-      <button {...props}>{props.label}</button>
+      <button style={{display:"list-item", marginLeft:"50%"}} {...props}>{props.label}</button>
     </>
   )
 }
