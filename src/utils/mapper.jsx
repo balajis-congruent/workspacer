@@ -1,6 +1,7 @@
 import ButtonField from "../components/ButtonField";
 import {DropdownField} from "../components/DropdownField";
 import InputField from "../components/InputField";
+import RadioButtonField from "../components/RadioButtonField";
 
 const mapperComponents = [
     {
@@ -14,6 +15,10 @@ const mapperComponents = [
     {
         type:"submit",
         tag:ButtonField
+    },
+    {
+        type: "radio",
+        tag: RadioButtonField
     }
 ];
 

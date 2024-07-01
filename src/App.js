@@ -49,7 +49,7 @@ function App() {
     async function fetchData() {
       const dataMap = {};
       for (let component of components) {
-        if (component.type === "dropdown") {
+        if (component.type === "dropdown" || "eligibility") {
           const dropdownData = await fetchDropdownData(component.data_url);
           dataMap[component.name] = dropdownData;
           console.log("Data for component", component.name, dropdownData);

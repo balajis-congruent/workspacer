@@ -108,6 +108,13 @@ app.get("/",(req,res) => {
                     validations : {type: "string", required: true, message: "Plan is required"}
                 },
                 {
+                    type:"radio",
+                    name: "eligibility",
+                    id:"eligibility",
+                    data_url: "http://localhost:3100/eligiibility",
+                    validations : {type: "string", required: true, message: "Eligibility is required"}
+                },
+                {
                     type:"submit",
                     id:"submit",
                     name: "Submit",
@@ -236,6 +243,15 @@ app.get('/plans', (req, res) => {
             "ABC",
             "FireFox",
             "Google",
+        ]
+    })
+})
+
+app.get('/eligibility', (req, res) => {
+    res.json({
+        options: [
+            "Eligible",
+            "Ineligible"
         ]
     })
 })
