@@ -73,7 +73,7 @@ function App() {
           actions.setSubmitting(false);
         }, 1000);
       }}>
-        <Form>
+        <Form style={{fontSize: ".75rem", color:"#495057", border: "1px solid #949494"}}>
           {
             ui?.sublayout.components.map(component => {
               return mapper(component.type)(component, data[component.name] || []);

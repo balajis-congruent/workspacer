@@ -9,7 +9,11 @@ const buildValidationSchema = (components) => {
             let validator = Yup[component.validations.type]();
 
             if (component.validations.required) {
-                validator = validator.required(component.validations.message);
+                validator = validator.required(component.validations.required_message);
+            }
+
+            if (component.validations.email) {
+                validator = validator.email(component.validations.email_message);
             }
 
             shape[component.name] = validator;

@@ -19,6 +19,7 @@ const DropdownField = (props, data) => {
     console.log("Data in drop", data);
     return (
         <div style={{ display: "list-item", paddingLeft: "50%", }} >
+            <label>{props.label}</label>
             <Field {...props} component="select">
                 <option value="" disabled>Select {props.name}</option>
                 {

@@ -70,25 +70,42 @@ app.get("/",(req,res) => {
             components: [
                 {
                     type:"input",
-                    name: "FirstName",
+                    name: "firstName",
+                    label: "First Name",
                     id:"firstName",
                     placeholder: "Enter first name",
-                    validations : {type: "string", required: true, message: "First name is required"}
+                    validations : {type: "string", required: true, required_message: "First name is required"}
                 },
                 {
                     type:"input",
-                    name: "LastName",
+                    name: "lastName",
+                    label: "Last Name",
                     id:"lastName",
                     placeholder: "Enter last name",
-                    validations : {type: "string", required: true, message: "Last name is required"}
+                    validations : {type: "string", required: true, required_message: "Last name is required"}
 
                 },
                 {
+                    type:"input",
+                    name: "email",
+                    id:"email",
+                    label: "Email",
+                    placeholder: "Enter Email",
+                    validations : {type: "string", required: true, required_message: "Email is required", email_message: "Enter valid Email"}
+                },
+                {
                     type:"dropdown",
-                    name: "Color",
-                    id:"color",
-                    data_url: "http://localhost:3100/colors",
-                    validations : {type: "string", required: true, message: "Color is required"}
+                    name: "company",
+                    id:"company",
+                    data_url: "http://localhost:3100/companies",
+                    validations : {type: "string", required: true, message: "Company is required"}
+                },
+                {
+                    type:"dropdown",
+                    name: "Plan",
+                    id:"plan",
+                    data_url: "http://localhost:3100/plans",
+                    validations : {type: "string", required: true, message: "Plan is required"}
                 },
                 {
                     type:"submit",
@@ -102,15 +119,15 @@ app.get("/",(req,res) => {
     })
 })
 
-app.get('/colors', (req, res) => {
-    res.json({
-        options: [
-            "red",
-            "green",
-            "blue",
-        ]
-    })
-})
+// app.get('/companies', (req, res) => {
+//     res.json({
+//         options: [
+//             "Tata",
+//             "ABC",
+//             "Axis",
+//         ]
+//     })
+// })
 
 // app.get("/", (req, res) => {
 //     res.json({
@@ -203,7 +220,18 @@ app.get("/endpoint", (req, res) => {
 
 app.get('/companies', (req, res) => {
     res.json({
-        companies: [
+        options: [
+            "Tata",
+            "ABC",
+            "FireFox",
+            "Google",
+        ]
+    })
+})
+
+app.get('/plans', (req, res) => {
+    res.json({
+        options: [
             "Tata",
             "ABC",
             "FireFox",
