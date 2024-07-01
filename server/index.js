@@ -97,13 +97,15 @@ app.get("/",(req,res) => {
                     type:"dropdown",
                     name: "company",
                     id:"company",
+                    label: "Company",
                     data_url: "http://localhost:3100/companies",
                     validations : {type: "string", required: true, message: "Company is required"}
                 },
                 {
                     type:"dropdown",
-                    name: "Plan",
+                    name: "plan",
                     id:"plan",
+                    label:"Plan",
                     data_url: "http://localhost:3100/plans",
                     validations : {type: "string", required: true, message: "Plan is required"}
                 },
@@ -111,7 +113,8 @@ app.get("/",(req,res) => {
                     type:"radio",
                     name: "eligibility",
                     id:"eligibility",
-                    data_url: "http://localhost:3100/eligiibility",
+                    label:"Eligibility",
+                    data_url: "http://localhost:3100/eligibility",
                     validations : {type: "string", required: true, message: "Eligibility is required"}
                 },
                 {
@@ -239,10 +242,8 @@ app.get('/companies', (req, res) => {
 app.get('/plans', (req, res) => {
     res.json({
         options: [
-            "Tata",
-            "ABC",
-            "FireFox",
-            "Google",
+            "Plan A",
+            "Plan B",
         ]
     })
 })

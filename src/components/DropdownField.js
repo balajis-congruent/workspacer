@@ -18,9 +18,13 @@ const fetchDropdownData = async (dataUrl) => {
 const DropdownField = (props, data) => {
     console.log("Data in drop", data);
     return (
-        <div style={{ display: "list-item", paddingLeft: "50%", }} >
-            <label>{props.label}</label>
-            <Field {...props} component="select">
+        <div style={{ display: "list-item", paddingLeft: "50%", paddingTop: "20px",fontWeight:"400", color:"#32699d"}} >
+            {
+                props.validations.required ? <label style={{ display: "list-item"}}>{props.label + "*"}</label> : 
+                <label style={{ display: "list-item"}}>{props.label}</label>
+            }
+            {/* <label style={{ display: "list-item"}}>{props.validations.required ? props.label + "*" : props.label}</label> */}
+            <Field style={{fontSize: ".75rem"}} {...props} component="select">
                 <option value="" disabled>Select {props.name}</option>
                 {
                     data && data.map(option => {

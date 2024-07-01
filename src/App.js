@@ -1,10 +1,11 @@
 import './App.css';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import { mapper } from './utils/mapper';
 import { fetchDropdownData } from './components/DropdownField';
 import buildValidationSchema from './utils/validationMapper';
+import { Form } from 'react-bootstrap';
 
 function App() {
 
@@ -17,10 +18,10 @@ function App() {
   useEffect(() => {
     const url = "http://localhost:3100";
     axios.get(url).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setUi(res.data);
     }).catch((err) => {
-      console.log(err);
+      //console.log(err);
     });
   }, []);
 
@@ -32,9 +33,9 @@ function App() {
       ui?.sublayout.components.forEach(component => {
         if (component.type !== "submit") {
           initValues[component.name] = '';
-          console.log("init value", initValues);
+          //console.log("init value", initValues);
         }
-        if (component.type === "dropdown") {
+        if (component.type === "dropdown" || "radio") {
           componentsToFetch.push(component);
         }
       });
@@ -49,10 +50,10 @@ function App() {
     async function fetchData() {
       const dataMap = {};
       for (let component of components) {
-        if (component.type === "dropdown" || "eligibility") {
+        if (component.type === "dropdown" || "radio") {
           const dropdownData = await fetchDropdownData(component.data_url);
           dataMap[component.name] = dropdownData;
-          console.log("Data for component", component.name, dropdownData);
+          //console.log("Data for component", component.name, dropdownData);
         }
       }
       setData(dataMap);
@@ -64,23 +65,47 @@ function App() {
   }, [components]);
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }, 1000);
-      }}>
-        <Form style={{fontSize: ".75rem", color:"#495057", border: "1px solid #949494"}}>
-          {
+    <>
+      <p style={{ margin: "20px 0px 20px 30px", fontSize: "1.25rem", fontWeight: "500" }}>Personal Information</p>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        validateOnChange={false}
+        validateOnBlur={false}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            console.log("Values : ", values);
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
+        >
+        {(formikProps) => {
+          const {
+            handleChange,
+            setFieldValue,
+            handleSubmit,
+            setValues,
+            setTouched,
+            values,
+            setSubmitting,
+            setFieldError,
+            fieldValue,
+            errors,
+            ...rest
+          } = formikProps;
+          console.log("Errors : ", errors);
+          return (<Form onSubmit={handleSubmit} style={{ fontSize: ".75rem", color: "#495057", border: "1px solid #949494" }}>
+            {
             ui?.sublayout.components.map(component => {
               return mapper(component.type)(component, data[component.name] || []);
-            })
-          }
-        </Form>
-    </Formik>
+              })
+            }
+          </Form>
+          )
+        }}
+      </Formik>
+    </>
   );
 }
 

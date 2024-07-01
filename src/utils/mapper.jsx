@@ -24,6 +24,6 @@ const mapperComponents = [
 
 export const mapper = (type) => {
     return mapperComponents.find((component, id) => {
-        return component.type == String(type);
+        return component.type === String(type);
     })?.tag;
 }
