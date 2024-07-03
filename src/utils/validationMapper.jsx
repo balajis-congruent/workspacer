@@ -13,10 +13,11 @@ const buildValidationSchema = (components) => {
             }
 
             if (component.validations.email) {
+                console.log("Entering here");
                 validator = validator.email(component.validations.email_message);
             }
 
-            shape[component.name] = validator;
+            shape[component.props.name] = validator;
             console.log("Validations : ",shape);
         }
     });

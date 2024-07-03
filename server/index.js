@@ -57,78 +57,151 @@ app.get("/button", (req, res) => {
 })
 
 
-app.get("/",(req,res) => {
+app.get("/", (req, res) => {
     res.json({
         sublayout: {
-            type:"form",
-            events: [
-                {
-                    event_type:"onSubmit",
-                    event_action:"set-alert"
-                }
-            ],
+            type: "form",
             components: [
                 {
-                    type:"input",
-                    name: "firstName",
-                    label: "First Name",
-                    id:"firstName",
-                    placeholder: "Enter first name",
-                    validations : {type: "string", required: true, required_message: "First name is required"}
+                    type: "input",
+                    props: {
+                        name: "firstName",
+                        label: "First Name",
+                        id: "firstName",
+                        placeholder: "Enter first name",
+                    },
+                    validations: { type: "string", required: true, required_message: "First name is required" }
                 },
                 {
-                    type:"input",
-                    name: "lastName",
-                    label: "Last Name",
-                    id:"lastName",
-                    placeholder: "Enter last name",
-                    validations : {type: "string", required: true, required_message: "Last name is required"}
+                    type: "input",
+                    props: {
+                        name: "lastName",
+                        label: "Last Name",
+                        id: "lastName",
+                        placeholder: "Enter last name",
+                    },
+                    validations: { type: "string", required: true, required_message: "First name is required" }
 
                 },
                 {
-                    type:"input",
-                    name: "email",
-                    id:"email",
-                    label: "Email",
-                    placeholder: "Enter Email",
-                    validations : {type: "string", required: true, required_message: "Email is required", email_message: "Enter valid Email"}
-                },
-                {
-                    type:"dropdown",
-                    name: "company",
-                    id:"company",
-                    label: "Company",
-                    data_url: "http://localhost:3100/companies",
-                    validations : {type: "string", required: true, message: "Company is required"}
-                },
-                {
-                    type:"dropdown",
-                    name: "plan",
-                    id:"plan",
-                    label:"Plan",
-                    data_url: "http://localhost:3100/plans",
-                    validations : {type: "string", required: true, message: "Plan is required"}
-                },
-                {
-                    type:"radio",
-                    name: "eligibility",
-                    id:"eligibility",
-                    label:"Eligibility",
-                    data_url: "http://localhost:3100/eligibility",
-                    validations : {type: "string", required: true, message: "Eligibility is required"}
-                },
-                {
-                    type:"submit",
-                    id:"submit",
-                    name: "Submit",
-                    label:"Submit"
+                    type: "input",
+                    props: {
+                        name: "email",
+                        id: "email",
+                        label: "Email",
+                        placeholder: "Enter Email",
+                    },
+                    validations: { type: "string", required: true, email: true, required_message: "Email is required", email_message: "Enter valid Email" }
                 },
 
+                {
+                    type: "dropdown",
+                    props: {
+                        name: "company",
+                        id: "company",
+                        label: "Company",
+                        data_url: "http://localhost:3100/companies",
+                    },
+                    validations: { type: "string", required: true, message: "Company is required" }
+                },
+                {
+                    type: "dropdown",
+                    props: {
+                        name: "plan",
+                        id: "plan",
+                        label: "Plan",
+                        data_url: "http://localhost:3100/plans",
+                    },
+                    validations: { type: "string", required: true, message: "Plan is required" }
+                },
+                {
+                    type: "radio",
+                    props: {
+                        name: "eligibility",
+                        id: "eligibility",
+                        label: "Eligibility",
+                        data_url: "http://localhost:3100/eligibility",
+                    },
+                    validations: { type: "string", required: true, message: "Eligibility is required" }
+                },
+                {
+                    type: "input",
+                    props: {
+                        name: "rehireDate",
+                        label: "Rehire Date",
+                        id: "rehireDate",
+                        placeholder: "Enter rehire date",
+                    },
+                    children: [
+                        {
+                            type: "click",
+                            props: {
+                                name: "rehireDetails",
+                                label: "Rehire Details",
+                                id: "rehireDetails"
+                            },
+                            stateProps: ["isAdd"],
+                            events: [
+                                {
+                                    event_type: "toggle-RehireDetails",
+                                    event_name: "onClick"
+                                }
+                            ]
+                        },
+                        {
+                            type: "table",
+                            props: {
+                                name: "rehireTable",
+                                label: "Rehire Table",
+                                id: "rehireTable",
+                                columns: [{ name: "rehireLocation", label: "Rehire Location" }, { name: "rehireDate", label: "Rehire Date" }],
+                                data_url: "http://localhost:3100/tableData",
+                            }
+                        }
+                    ],
+                    validations: { type: "string", required: false }
+                },
+                // {
+                //     type: "submit",
+                //     props: {
+                //         id: "submit",
+                //         name: "Submit",
+                //         label: "Submit"
+                //     }
+                // },
             ]
         }
     })
 })
 
+
+app.get("/rehireDetailsUI", (req, res) => {
+    res.json({
+        sublayout: {
+            type: "modal",
+
+            components: [
+                {
+                    type: "table",
+                    name: "rehireTable",
+                    label: "Rehire Table",
+                    id: "rehireTable",
+                    columns: [{ name: "rehireLocation", label: "Rehire Location" }, { name: "rehireDate", label: "Rehire Date" }],
+                    data_url: "http://localhost:3100/tableData",
+                },
+                {
+                    type: "input",
+                    name: "lastName",
+                    label: "Last Name",
+                    id: "lastName",
+                    placeholder: "Enter last name",
+                    validations: { type: "string", required: true, required_message: "Last name is required" }
+
+                }
+            ]
+        }
+    })
+})
 // app.get('/companies', (req, res) => {
 //     res.json({
 //         options: [
@@ -248,6 +321,21 @@ app.get('/plans', (req, res) => {
     })
 })
 
+app.get('/tableData', (req, res) => {
+    res.json({
+        options: [
+            {
+                rehireLocation: "Chennai",
+                rehireDate: "May 5th,2015"
+            },
+            {
+                rehireLocation: "Bangalore",
+                rehireDate: "March 3rd,2019"
+            }
+        ]
+    })
+})
+
 app.get('/eligibility', (req, res) => {
     res.json({
         options: [
@@ -273,4 +361,5 @@ function getPlansByCompanyName(companyName) {
 app.listen(3100, () => {
     console.log("running on port ", 3100);
 })
+
 

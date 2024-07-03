@@ -1,16 +1,17 @@
 import ButtonField from "../components/ButtonField";
-import {DropdownField} from "../components/DropdownField";
-import InputField from "../components/InputField";
-import RadioButtonField from "../components/RadioButtonField";
-
+import {DropdownFieldComponent} from "../components/DropdownFieldComponent";
+import InputFieldComponent from "../components/InputFieldComponent";
+import RadioButtonFieldComponent from "../components/RadioButtonFieldComponent";
+import TableComponent from "../components/TableComponent";
+import ClickComponent from "../components/ClickComponent";
 const mapperComponents = [
     {
         type:"input",
-        tag:InputField
+        tag:InputFieldComponent
     },
     {
         type:"dropdown",
-        tag:DropdownField
+        tag:DropdownFieldComponent
     },
     {
         type:"submit",
@@ -18,7 +19,15 @@ const mapperComponents = [
     },
     {
         type: "radio",
-        tag: RadioButtonField
+        tag: RadioButtonFieldComponent
+    },
+    {
+        type: "table",
+        tag: TableComponent
+    },
+    {
+        type: "click",
+        tag: ClickComponent
     }
 ];
 
