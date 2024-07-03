@@ -2,14 +2,14 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 
 
-const RadioButtonFieldComponent = (properties) => {
-    const { props, data } = properties;
+const RadioButtonFieldComponent = (props) => {
+    const { label,fieldName, data } = props;
     return (
         <div style={{ display: "list-item", marginLeft: "2rem" }}>
-            <label>{props.label}</label>
-            {data[props.name] && data[props.name].map(option => {
+            <label>{label}</label>
+            {data[fieldName] && data[fieldName].map(option => {
                 return (
-                    <Form.Check inline type="radio" label={option} name={props.name}/>
+                    <Form.Check inline type="radio" label={option} name={fieldName}/>
 
                 )
             })}

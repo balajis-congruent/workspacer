@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
                 {
                     type: "input",
                     props: {
-                        name: "firstName",
+                        fieldName: "firstName",
                         label: "First Name",
                         id: "firstName",
                         placeholder: "Enter first name",
@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
                 {
                     type: "input",
                     props: {
-                        name: "lastName",
+                        fieldName: "lastName",
                         label: "Last Name",
                         id: "lastName",
                         placeholder: "Enter last name",
@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
                 {
                     type: "input",
                     props: {
-                        name: "email",
+                        fieldName: "email",
                         id: "email",
                         label: "Email",
                         placeholder: "Enter Email",
@@ -97,7 +97,7 @@ app.get("/", (req, res) => {
                 {
                     type: "dropdown",
                     props: {
-                        name: "company",
+                        fieldName: "company",
                         id: "company",
                         label: "Company",
                         data_url: "http://localhost:3100/companies",
@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
                 {
                     type: "dropdown",
                     props: {
-                        name: "plan",
+                        fieldName: "plan",
                         id: "plan",
                         label: "Plan",
                         data_url: "http://localhost:3100/plans",
@@ -117,7 +117,7 @@ app.get("/", (req, res) => {
                 {
                     type: "radio",
                     props: {
-                        name: "eligibility",
+                        fieldName: "eligibility",
                         id: "eligibility",
                         label: "Eligibility",
                         data_url: "http://localhost:3100/eligibility",
@@ -127,7 +127,7 @@ app.get("/", (req, res) => {
                 {
                     type: "input",
                     props: {
-                        name: "rehireDate",
+                        fieldName: "rehireDate",
                         label: "Rehire Date",
                         id: "rehireDate",
                         placeholder: "Enter rehire date",
@@ -136,7 +136,7 @@ app.get("/", (req, res) => {
                         {
                             type: "click",
                             props: {
-                                name: "rehireDetails",
+                                fieldName: "rehireDetails",
                                 label: "Rehire Details",
                                 id: "rehireDetails"
                             },
@@ -151,7 +151,7 @@ app.get("/", (req, res) => {
                         {
                             type: "table",
                             props: {
-                                name: "rehireTable",
+                                fieldName: "rehireTable",
                                 label: "Rehire Table",
                                 id: "rehireTable",
                                 columns: [{ name: "rehireLocation", label: "Rehire Location" }, { name: "rehireDate", label: "Rehire Date" }],

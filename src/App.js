@@ -57,7 +57,7 @@ function App() {
   
       ui.sublayout.components.forEach((component) => {
         if (component.type !== "submit") {
-          initValues[component.props.name] = '';
+          initValues[component.props.fieldName] = '';
         }
         // if (component.data_url || component.children?.data_url) {
         //   componentsToFetch.push(component);
@@ -79,7 +79,7 @@ function App() {
       async function fetchDataRecursive(component) {
         if (component.props.data_url) {
           const data = await fetchDropdownData(component.props.data_url);
-          dataMap[component.props.name] = data;
+          dataMap[component.props.fieldName] = data;
         }
   
         if (component.children && component.children.length > 0) {
@@ -137,9 +137,9 @@ function App() {
             <Form onSubmit={handleSubmit} style={{ fontSize: ".75rem", color: "#495057", border: "1px solid #949494" }}>
               {components &&
                 components.map((elem) => {
-                  return (<div style={{paddingTop:"2rem"}}><Field {...{props: { ...elem?.props }, childComp: {...elem?.children }, data: {...data} }} onChange={(e) => (formikProps.setFieldValue(elem?.props.name, e.target.value))} component={elem.function} /></div>)
+                  return (<div style={{paddingTop:"2rem"}}><Field name={elem?.props.fieldName} {...elem?.props} childComp={elem?.children} data={data}  onChange={handleChange} component={elem.function} /></div>)
                 })
-              }
+              } 
               <button type="submit">Submit</button>
             </Form>
           )

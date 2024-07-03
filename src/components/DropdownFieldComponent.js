@@ -17,16 +17,17 @@ const fetchDropdownData = async (dataUrl) => {
 };
 
 
-const DropdownFieldComponent = (properties) => {
+const DropdownFieldComponent = (props) => {
 
-    const { props, events, childComp, data } = properties;
+    const { label, fieldName, events, childComp, data } = props;
+    console.log("Data for dropdown :",data);
 
     return (
         <div style={{ display: "list-item", marginLeft: "2rem" }}>
-            <label>{props.label} :</label>
+            <label>{label} :</label>
             <select>
-                <option disabled>Select {props.label}</option>
-                {data[props.name] && data[props.name].map((option, index) => {
+                <option disabled>Select {label}</option>
+                {data[fieldName] && data[fieldName].map((option, index) => {
                     return (
                         <option key={index}>
                             {option}
