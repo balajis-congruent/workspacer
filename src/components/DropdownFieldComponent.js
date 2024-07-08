@@ -1,6 +1,7 @@
 import React from 'react'
 import { ErrorMessage } from 'formik';
 import axios from 'axios';
+import { Form } from 'react-bootstrap';
 
 
 const fetchDropdownData = async (dataUrl) => {
@@ -19,22 +20,23 @@ const fetchDropdownData = async (dataUrl) => {
 
 const DropdownFieldComponent = (props) => {
 
-    const { label, fieldName, events, childComp, data } = props;
+    const { label, fieldname, events, childcomp, data, onChange } = props;
     console.log("Data for dropdown :",data);
 
     return (
         <div style={{ display: "list-item", marginLeft: "2rem" }}>
             <label>{label} :</label>
-            <select>
+            <Form.Select name={fieldname}onChange={onChange}>
                 <option disabled>Select {label}</option>
-                {data[fieldName] && data[fieldName].map((option, index) => {
+                {data[fieldname] && data[fieldname].map((option, index) => {
                     return (
-                        <option key={index}>
+                        <option id={index} key={index}>
                             {option}
                         </option>
                     );
                 })}
-            </select>
+            </Form.Select>
+            {/* <ErrorMessage name={fieldname} className="error" style={{ color: 'red' }} /> */}
         </div>
     )
 }

@@ -17,7 +17,7 @@ const buildValidationSchema = (components) => {
                 validator = validator.email(component.validations.email_message);
             }
 
-            shape[component.props.name] = validator;
+            shape[component.props.fieldname] = validator;
             console.log("Validations : ",shape);
         }
     });

@@ -18,16 +18,16 @@ const InputFieldComponent = (props) => {
       }
     ];
 
-    const {label, fieldName, events, childComp, data} = props;
+    const {label, fieldname, events, childcomp, data} = props;
 
 
-    console.log("Child Comp :",Object.values(childComp));
+    console.log("Child Comp :",Object.values(childcomp));
     return (
-        <div style={{display:"list-item", marginLeft:"2rem"}}>
+        <div key="input-field" style={{display:"list-item", marginLeft:"2rem"}}>
         <label>{label} :</label>
         <Form.Control {...props} />
-        {childComp && Object.values(childComp).map(child => {
-            console.log("Data",data[child.props.fieldName]);
+        {childcomp && Object.values(childcomp).map(child => {
+            console.log("Data",data[child.props.fieldname]);
             // const statePropsToSend = child.stateProps.map(stateProp => {
             //   stateProp
             // })
@@ -37,12 +37,12 @@ const InputFieldComponent = (props) => {
             //     ...event.event_name
             //   }; 
             // })
-            return (mapper(child.type)({...{props:{...child.props}, data: data[child.props.fieldName], stateProps: {isAdd: isAdd, onClick: toggleRehireDetails} }}));
+            return (mapper(child.type)({...{props:{...child.props}, data: data[child.props.fieldname], stateProps: {isAdd: isAdd, onClick: toggleRehireDetails} }}));
         })}
         {/* <p onClick={toggle}>
           {isAdd === false ? "View Rehire Details" : "Hide Rehire Details"}
         </p>
-        {isAdd && <TableComponent {...{props:{...childComp[1].props}, data:data[childComp[1].props.name]}}/>} */}
+        {isAdd && <TableComponent {...{props:{...childcomp[1].props}, data:data[childcomp[1].props.name]}}/>} */}
         </div>
 
     )

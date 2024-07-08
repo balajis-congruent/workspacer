@@ -1,0 +1,24 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #01607f;
+    font-size: "32px";
+    width: Fill (1, 082px)px;
+    height: Fill (200px)px;
+    gap: 0px;
+    opacity: 0px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #01607f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profileDetailsContainer {
+    width: Fill (732px)px;
+    height: Hug (797px)px;
+    padding: 16px 0px 0px 0px;
+    gap: 16px;
+    opacity: 0px;
+
+}

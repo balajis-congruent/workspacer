@@ -1,12 +1,10 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 
-const buttonFieldComponent = (props, data=null) => {
+const ButtonFieldComponent = (props) => {
 return (
-    <>
-    { console.log()}
-      <button style={{display:"list-item", marginLeft:"50%"}} {...props}>{props.label}</button>
-    </>
+      <Button {...props}>{props.label}</Button>
   )
 }
 
-export default buttonFieldComponent
+export default ButtonFieldComponent

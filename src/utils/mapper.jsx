@@ -1,9 +1,10 @@
-import ButtonField from "../components/ButtonField";
 import {DropdownFieldComponent} from "../components/DropdownFieldComponent";
 import InputFieldComponent from "../components/InputFieldComponent";
 import RadioButtonFieldComponent from "../components/RadioButtonFieldComponent";
 import TableComponent from "../components/TableComponent";
 import ClickComponent from "../components/ClickComponent";
+import ButtonFieldComponent from "../components/ButtonFieldComponent";
+import ProfileDetails from "../layouts/ProfileDetails";
 const mapperComponents = [
     {
         type:"input",
@@ -15,7 +16,11 @@ const mapperComponents = [
     },
     {
         type:"submit",
-        tag:ButtonField
+        tag:ButtonFieldComponent
+    },
+    {
+        type:"button",
+        tag:ButtonFieldComponent
     },
     {
         type: "radio",
@@ -30,6 +35,16 @@ const mapperComponents = [
         tag: ClickComponent
     }
 ];
+
+
+const mapperLayouts = {
+    ProfileDetails: ProfileDetails
+}
+
+export const renderLayout= (layout)=>{
+    const Comp = mapperLayouts[layout.name];
+    return <Comp {...layout} />
+}
 
 export const mapper = (type) => {
     return mapperComponents.find((component, id) => {
