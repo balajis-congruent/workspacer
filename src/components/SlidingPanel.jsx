@@ -5,9 +5,8 @@ import React, { useState } from 'react'
 import { toggleMachine } from "../machines/workspacerMachines";
 
 const SlidingPanel = (props) => {
-    const [state,send]=useMachine(toggleMachine)
     console.log("children in sliding panel",props);
-    
+    const [open,setopen]= useState(props.isOpen);    
     // const [state, setState] = useState({
     //     isPaneOpen: props.isPaneOpen,
     // });
@@ -18,22 +17,23 @@ const SlidingPanel = (props) => {
             {/* <button onClick={() => setState({ isPaneOpen: true })}>
                 Click me to open right pane!
             </button> */}
-            {
+            {/* {
                 console.log("Sliding state machine", state.value)
-            }
+            } */}
             <SlidingPane
                 className="some-custom-class"
                 overlayClassName="some-custom-overlay-class"
                 isOpen={props.isOpen}
                 title="Hey, it is optional pane title.  I can be React component too."
                 subtitle="Optional subtitle."
+                from={props.from}
                 onRequestClose={() => {
                     // triggered on "<" on left top click or on outside click
                     console.log("Hellow world")
-                    send({type:"toggle"})
+                    // setopen(false)
+                    props.send({type:"toggle"})
                 }}
             >
-            {/* {children} */}
             <div>
                 {props.children}
             </div>

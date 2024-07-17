@@ -37,14 +37,14 @@ function App() {
               
       }
       <div>state.value is : {JSON.stringify(state.value)}</div>
-      <div>state.status is : {JSON.stringify(state.status)}</div>
+      {/* <div>state.status is : {JSON.stringify(state.status)}</div> */}
 
 
       {
         ui?.sublayouts && ui?.sublayouts.map((layout, index) => {
           // return <SlidingPanel   id={layout.name} key={index}> {renderLayout(layout)} </SlidingPanel>
           if (layout.type == "slider")
-            return <SlidingPanel isOpen={state.value=="Active" ? true: false } id={layout.name} key={index}>{renderLayout(layout)}</SlidingPanel>
+            return <SlidingPanel from={layout.direction} isOpen={state.value=="Active" ? true: false } id={layout.name} key={index} send= {send}>{renderLayout(layout)}</SlidingPanel>
           else {
             return <div id={layout.name} key={index}> {renderLayout(layout)} </div>
           }
@@ -55,6 +55,12 @@ function App() {
       <Button onClick={()=>{
         send({type: "toggle"})
       }}  >Open Panel</Button>
+      <br/>
+      <Button onClick={()=>{
+        send({type:"toggle"})
+      }} >
+        Open Left Panel
+      </Button>
     </>
   )
 }
