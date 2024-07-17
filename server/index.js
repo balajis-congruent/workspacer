@@ -59,12 +59,179 @@ app.get("/button", (req, res) => {
 
 app.get("/", (req, res) => {
     res.json({
+        // layouts: [
+        //     {
+        //         layoutName: "Profile",
+        //         subalyouts: [],
+        //     },
+        //     {
+        //         "Dashboard",
+        //         sublayouts: []
+        //     }
+        // ]
         sublayouts: [
             {
                 name: "ProfileDetails",
                 fieldlabel: "Personal Details",
                 page: 1,
                 type: "form",
+                classname: "profileDetailsContainer",
+                components: [
+                    {
+                        type: "input",
+                        props: {
+                            type: "input",
+                            fieldname: "firstName",
+                            label: "First Name",
+                            id: "firstName",
+                            placeholder: "Enter first name",
+                        },
+                        validations: { type: "string", required: true, required_message: "First name is required" }
+                    },
+                    {
+                        type: "input",
+                        props: {
+                            type: "input",
+                            fieldname: "lastName",
+                            label: "Last Name",
+                            id: "lastName",
+                            placeholder: "Enter last name",
+                        },
+                        validations: { type: "string", required: true, required_message: "Last name is required" }
+
+                    },
+                    {
+                        type: "input",
+                        props: {
+                            type: "input",
+                            fieldname: "email",
+                            id: "email",
+                            label: "Email",
+                            placeholder: "Enter Email",
+                        },
+                        
+                        validations: { type: "string", required: true, email: true, required_message: "Email is required", email_message: "Enter valid Email" }
+                    },
+
+                    {
+                        type: "dropdown",
+                        props: {
+                            type: "select",
+                            fieldname: "company",
+                            id: "company",
+                            label: "Company",
+                            data_url: "http://localhost:3100/companies",
+                        },
+                        validations: { type: "string", required: true, message: "Company is required" }
+                    },
+                    {
+                        type: "dropdown",
+                        props: {
+                            type: "select",
+                            fieldname: "plan",
+                            id: "plan",
+                            label: "Plan",
+                            data_url: "http://localhost:3100/plans",
+                        },
+                        validations: { type: "string", required: true, message: "Plan is required" }
+                    },
+                    {
+                        type: "radio",
+                        props: {
+                            type: "radio",
+                            fieldname: "eligibility",
+                            id: "eligibility",
+                            label: "Eligibility",
+                            data_url: "http://localhost:3100/eligibility",
+                        },
+                        validations: { type: "string", required: true, message: "Eligibility is required" }
+                    },
+                    {
+                        type: "input",
+                        props: {
+                            type: "input",
+                            fieldname: "rehireDate",
+                            label: "Rehire Date",
+                            id: "rehireDate",
+                            placeholder: "Enter rehire date",
+                        },
+                        children: [
+                            {
+                                type: "click",
+                                props: {
+                                    fieldname: "rehireDetails",
+                                    label: "Rehire Details",
+                                    id: "rehireDetails"
+                                },
+                                stateProps: ["isVisible"],
+                                events: [
+                                    {
+                                        event_type: "toggleVisible",
+                                        event_name: "onClick"
+                                    }
+                                ]
+                            },
+                            {
+                                type: "table",
+                                props: {
+                                    fieldname: "rehireTable",
+                                    label: "Rehire Table",
+                                    id: "rehireTable",
+                                    columns: [{ name: "rehireLocation", label: "Rehire Location" }, { name: "rehireDate", label: "Rehire Date" }],
+                                    data_url: "http://localhost:3100/tableData",
+                                }
+                            },
+                            // {
+                            //     type: "click",
+                            //     props: {
+                            //         fieldname: "rehireDetails",
+                            //         label: "Rehire Details",
+                            //         id: "rehireDetails"
+                            //     },
+                            //     stateProps: ["isVisible"],
+                            //     events: [
+                            //         {
+                            //             event_type: "toggleVisible",
+                            //             event_name: "onClick"
+                            //         }
+                            //     ]
+                            // },
+                            {
+                                type: "table",
+                                props: {
+                                    fieldname: "rehireTable",
+                                    label: "Rehire Table",
+                                    id: "rehireTable",
+                                    columns: [{ name: "rehireLocation", label: "Rehire Location" }, { name: "rehireDate", label: "Rehire Date" }],
+                                    data_url: "http://localhost:3100/tableData",
+                                }
+                            }
+                        ],
+                        validations: { type: "string", required: false }
+                    },
+                    {
+                        type: "submit",
+                        props: {
+                            id: "submit",
+                            name: "Submit",
+                            label: "Submit"
+                        }
+                    },
+                    {
+                        type: "button",
+                        props: {
+                            id: "next",
+                            name: "next",
+                            label: "Next"
+                        }
+                    },
+                ]
+            },
+            {
+                name: "ProfileDetails",
+                fieldlabel: "Personal Details",
+                page: 1,
+                type: "slider",
                 classname: "profileDetailsContainer",
                 components: [
                     {

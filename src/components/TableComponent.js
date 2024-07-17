@@ -8,7 +8,7 @@ const TableComponent = (properties) => {
   // })
   return (
     <>
-    {stateProps.isAdd && 
+    {stateProps.isVisible && 
       <Table striped bordered hover>
         <thead>
           <tr>
